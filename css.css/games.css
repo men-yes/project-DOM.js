@@ -1,27 +1,16 @@
 *{
     margin: 0;
     padding: 0;
-
 }
 html , body{
 height: 100%;
 background-color: blueviolet;
-
-
-/* display: flex;
-justify-content: center;
-align-items: center; */
-/* flex-direction: column; */
 }
 header{
     height: 250px;
     background-color: black;
     color: blueviolet;
-    /* text-align: center; */
-    /* display: flex; */
-    /* justify-content: center;
-    align-items: center;
-    width: 100%; */
+   
 }
 h1{
     height: 250px;
@@ -36,15 +25,15 @@ main {
     /* flex-grow: 1;
     width: 100%; */
 }
-#conteiner{
+section{
     margin-top: 50px;
     height: 400px;
     width: 400px;
-background-color: blue;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-wrap:wrap ;
+ background-color: blue;
+  display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-wrap:wrap ;
 
 }
 .content{
@@ -67,4 +56,9 @@ a{
     text-align: center;
     color: white;
     font-size: 16px;
+}
+@media screen and (max-width: 400px) {
+    section {
+        background-color: transparent; /* שינוי הצבע של הרקע במקום להסתיר אותו */
+    }
 }

@@ -4,43 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/css.css/index.css">
-   
+    <link rel="stylesheet" href="/css.css/index.css" />
   </head>
   <body>
     <header>
-        <span>
-            <img src="/images/‏‏לכידה.PNG" alt=" logo">
-        </span>
-        <h1>
-            wellcom to my-games
-        </h1>
+      <span>
+        <img src="/images/m-g.PNG" alt=" logo" />
+      </span>
+      <h1>wellcom to my-games</h1>
     </header>
     <main>
+      <div id="message"></div>
       <form action="" id="loginForm">
-        <label for=" name"> name :</label>
-        <input type="text" id="name" placeholder="name">
-        <label for="password">password :</label>
-        <input type="password" id="password" placeholder="password">
-        
+        <label for=" name"> name:</label>
+        <input type="text" id="name" placeholder="name" required />
+        <label for="password">password:</label>
+        <input type="password" id="password" placeholder="password" required />
+        <div id="btns">
+          <button class="middle" type="submit" onclick="logIn(event)">log in</button>
+          <button class="middle" type="submit" id="signUpBtn" style="display: none;" onclick="signUp(event)"> sing Up</button>
+        </div>
       </form>
-      <div id="extraFields" style="display:none ; text-align: center; margin: 30px;" >
+      <div
+        id="extraFields"
+        style="display: none; text-align: center; margin: 30px">
         <label for="email">Email:</label>
-        <input type="email" id="email" placeholder="example@example.com">
+        <input type="email" id="email" placeholder="example@example.com" />
         <label for="phone">Phone:</label>
-        <input type="tel" id="phone" placeholder="052-1234567">
-    </div>
-      <div id="btns">
-        <button class="middle" type="button" onclick="signUp()">sing Up</button>
-        <button class="middle" type="button" onclick="logIn()">log in</button>
-       
+        <input type="tel" id="phone" placeholder="052-1234567" />
+        <button class="middle" type="button" onclick="signUp(event)">sign up</button>
       </div>
-    <span>
-        <button class="reset" type="reset" id="reset" onclick=" resetForm()">reset</button>
-    </span>
+      <span>
+        <button class="reset" type="reset" id="reset" onclick=" resetForm()">reset </button>
+      </span>
     </main>
     <footer>© 2024 my-games</footer>
-  <script src="/js.js/index.js"></script>
-    
+    <script src="/js.js/index.js"></script>
   </body>
 </html>

@@ -1,4 +1,10 @@
 
+const homeButton = document.getElementById('bt');
+
+homeButton.addEventListener('click', function() {
+  window.location.href = '/html.html/games.html'; 
+});
+
 let  turn = true // true = x
 let counter = 0;
 let btns = document.querySelectorAll(".bbtt");

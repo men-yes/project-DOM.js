@@ -1,4 +1,10 @@
 
+const homeButton = document.getElementById('bt');
+
+homeButton.addEventListener('click', function() {
+  window.location.href = '/html.html/games.html'; 
+});
+
 let shootCount = 0;
 const maxShoots =5;
 let score = 0;
@@ -65,7 +71,7 @@ function shoot(direction) {
         }, 300); 
        }
     } 
-    
+
   function resetGame() {
     score = 0;
     shootCount = 0;
