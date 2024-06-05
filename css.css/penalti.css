@@ -1,0 +1,61 @@
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #4CAF50;
+    font-family: Arial, sans-serif;
+}
+#score{
+    font-size: xx-large;
+    text-align: center;
+}
+#boxWaith{
+    width: 120px;
+    height: 30px;
+    background-color: aliceblue;
+}
+h1 {
+    color: white;
+}
+#goal {
+    position: relative;
+    width: 320px;
+    height: 150px;
+    background-color: white;
+    border: 5px solid black;
+    border-bottom: none;
+}
+.goalkeeper {
+    position: absolute;
+    /* width: 60px;
+    height: 50px;
+    background-color: red; */
+    bottom: 0;
+    left: 125px;
+    transition: left 0.5s;
+}
+.ball {
+    /* position: absolute; */
+     margin-top: 200px;
+     font-size: 40px;
+     text-align: center;
+    /* transition: all 0.5; */
+}
+.buttons {
+    margin-top: 50px;
+}
+button {
+    padding: 19px;
+    margin: 15px;
+    border-radius: 50%;
+    font-size: 46px;
+}
+#message {
+    margin-top: 20px;
+    font-size: 24px;
+    color: red;
+}
