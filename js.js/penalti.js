@@ -1,9 +1,9 @@
 
-let shotCount = 0;
-const maxShots = 10;
-let win = 0;
+let shootCount = 0;
+const maxShoots =5;
+let score = 0;
 function shoot(direction) {
-    shotCount++ ;
+    shootCount++ ;
     const goalkeeper = document.getElementById('goalkeeper');
     const message = document.getElementById('message');
     const boxWaith = document.getElementById('boxWaith');
@@ -32,24 +32,45 @@ function shoot(direction) {
             (direction === 'center' && goalkeeper.style.left !== '125px') ||
             (direction === 'right' && goalkeeper.style.left !== '225px')
         ) {
-            win++;
+            score++;
             message.textContent = 'Goal!';
-            boxWaith.textContent = win
+            boxWaith.textContent = score
            
         } else {
             message.textContent = 'Saved!';
         }
     }, 500);
     message.textContent = '';
-    if(shotCount >= maxShots){
+
+    if(shootCount >= maxShoots){
         endGame();
     }
+
     function endGame(){
-        if(win > 5){
-            alert("you win");
+        if(score >= 3){
+            setTimeout(() => {
+             confetti({
+             particleCount: 600,
+             spread: 100,
+             origin: { y: 0.6 }
+             });
+             alert("you win");
+             resetGame();
+            },1000)
         }
         else{
-          alert("you lose")  
-        }
-    }
+          setTimeout(() => {
+          alert("you lose");
+          resetGame();
+        }, 300); 
+       }
+    } 
+    
+  function resetGame() {
+    score = 0;
+    shootCount = 0;
+    boxWaith.textContent = score;
+    message.textContent = '';
+}
+
 }
