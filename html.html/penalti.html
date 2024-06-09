@@ -7,16 +7,27 @@
     <link rel="stylesheet" href="/css.css/penalti.css" />
   </head>
   <body>
+    <button id="instructionsBtn">הוראות משחק</button> <!-- כפתור הוראות משחק -->
+    <div id="instructionsModal" class="modal"> <!-- תיבת ההוראות המתאימה -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p> . יש לך 5 בעיטות סכ"ה . 2. המטרה להבקיע את רוב הבעיטות. 3. אם הבקעת 3 מתוך 5 ניצחת אם לא הפסדת. </p>
+        </div>
+    </div>
     <button type="submit" id="bt">לעמוד הקודם</button>
-    <div id="score">SCORE :<p id="boxWaith">0</p> </div>
-    <div id="message"></div>
+    <button type="reset" id="bt2" onclick="resetGame()">איפוס</button>
+    <div id="score">SCORE :<p id="boxWaith" >0</p> </div>
+    <div id="message" ></div>
 
     <h1>Penalty Shootout</h1>
     <div>
-      <div id="goal">
-        <div class="goalkeeper" id="goalkeeper">
+      <div id="goal" >
+        <div class="goalkeeper" id="goalkeeper" >
           <img src="../images/g-p.PNG" width="80px" height="60px" alt="" />
         </div>
+        <!-- <div class="goal-ball" id="#ball1">⚽️</div>
+        <div class="goal-ball" id="#ball2">⚽️</div>
+        <div class="goal-ball" id="#ball3">⚽️</div> -->
       </div>
       <div class="ball" id="ball">⚽️</div>
     </div>

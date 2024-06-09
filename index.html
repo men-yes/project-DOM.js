@@ -4,17 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/css.css/normalize.css">
     <link rel="stylesheet" href="/css.css/index.css" />
   </head>
   <body>
     <header>
-      <span>
+      <div class="logo-container">
         <img src="/images/m-g.PNG" alt=" logo" />
-      </span>
-      <h1>wellcom to my-games</h1>
+      </div>
+      <div class="title-container">
+        <h1>wellcom to mygames</h1>
+      </div>
     </header>
     <main>
-      <div id="message"></div>
+      <div id="message" ></div>
       <form action="" id="loginForm">
         <label for=" name"> name:</label>
         <input type="text" id="name" placeholder="name" required />
@@ -22,17 +25,17 @@
         <input type="password" id="password" placeholder="password" required />
         <div id="btns">
           <button class="middle" type="submit" onclick="logIn(event)">log in</button>
-          <button class="middle" type="submit" id="signUpBtn" style="display: none;" onclick="signUp(event)"> sing Up</button>
+          <!-- <button class="middle" type="submit" id="signUpBtn" style="display: none;" onclick="signUp(event)"> sing Up</button> -->
         </div>
       </form>
-      <div
-        id="extraFields"
-        style="display: none; text-align: center; margin: 30px">
-        <label for="email">Email:</label>
-        <input type="email" id="email" placeholder="example@example.com" />
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" placeholder="052-1234567" />
-        <button class="middle" type="button" onclick="signUp(event)">sign up</button>
+      <div id="extraFields" style="display: none;">
+        <form id="signUpForm">
+          <label for="email">Email:</label>
+          <input type="email" id="email" placeholder="example@example.com" />
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" placeholder="052-1234567" />
+          <button class="middle" type="button" onclick="signUp(event)">sign up</button>
+        </form>
       </div>
       <span>
         <button class="reset" type="reset" id="reset" onclick=" resetForm()">reset </button>

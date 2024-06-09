@@ -1,3 +1,4 @@
+
 const message = document.getElementById("message");
 // פונקציה לבדיקת משתמש קיים
 function checkUserExists(name, password) {
@@ -7,9 +8,11 @@ function checkUserExists(name, password) {
 // פונקציה לבדוק אם המשתמש כבר קיים ולבצע התחברות
 function logIn(event) {
   event.preventDefault();
+
   const name = document.getElementById("name").value;
   const password = document.getElementById("password").value;
   const user = checkUserExists(name, password);
+
   if (!name || !password) {
     message.style.display = "block";
     message.textContent = "נא למלאות פרטים";
@@ -17,24 +20,28 @@ function logIn(event) {
   }
   if (!isValidPassword(password)) {
     message.style.display = "block";
-    message.textContent =
-      "הסיסמה חייבת להיות לפחות 6 תווים, לכלול לפחות אות אחת ותו מיוחד אחד (!@#$%^&*).";
+    message.textContent ="הסיסמה חייבת להיות לפחות 6 תווים, לכלול לפחות אות אחת ותו מיוחד אחד (!@#$%^&*).";
     return;
   }
   if (user) {
     message.style.display = "block";
     message.textContent = "ברוך הבא למועדון";
-  } else {
+    localStorage.setItem("currentUser" , JSON.stringify(user))
+    setTimeout(() => {
+        location.replace("/html.html/games.html");
+    },2000 )
+  }
+   else {
     message.style.display = "block";
     message.textContent = "משתמש לא נמצא, אנא הרשמו.";
-    showSignUp();
-    // document.getElementById("extraFields").style.display = "block";
+    showSignUp()
   }
-  location.replace("/html.html/games.html")
 }
+
 function showSignUp() {
   document.getElementById("extraFields").style.display = "block";
 }
+
 function isValidPassword(password) {
     const minLength = 6;
     const specialChars = /[!@#$%^&*]/;
@@ -56,25 +63,19 @@ function resetForm() {
 // פונקציה לרישום משתמש חדש
 function signUp(event) {
   event.preventDefault();
+
   const name = document.getElementById("name").value;
   const password = document.getElementById("password").value;
   const email = document.getElementById("email").value;
   const phone = document.getElementById("phone").value;
   let users = JSON.parse(localStorage.getItem("users")) || [];
-  if (!name || !password) {
-    return;
-  }
-  if (!isValidPassword(password)) {
+
+  if (!name || !password || !email || !phone) {
     message.style.display = "block";
-    message.textContent =
-      "הסיסמה חייבת להיות לפחות 6 תווים, לכלול לפחות אות אחת ותו מיוחד אחד (!@#$%^&*).";
+    message.textContent = "נא למלא את כל השדות";
     return;
   }
-  if (users.find((user) => user.name === name)) {
-    message.style.display = "block";
-    message.textContent = "משתמש קיים נא לחץ על התחבר";
-    return;
-  }
+
   users.push({ name, password, email, phone });
   localStorage.setItem("users", JSON.stringify(users));
   message.style.display = "block";

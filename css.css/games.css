@@ -12,11 +12,17 @@ header{
     color: blueviolet;
    
 }
+#israel{
+    text-align: center;
+    padding-top: 30px;
+    font-size: xx-large;
+}
 h1{
-    height: 250px;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
 }
 main {
     display: flex;
@@ -26,14 +32,15 @@ main {
     width: 100%; */
 }
 section{
-    margin-top: 50px;
+    margin-top: 80px;
     height: 400px;
     width: 400px;
- background-color: blue;
-  display: flex;
- justify-content: center;
- align-items: center;
- flex-wrap:wrap ;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative; 
 
 }
 .content{
@@ -57,8 +64,25 @@ a{
     color: white;
     font-size: 16px;
 }
+#bt {
+    position: absolute; /* הוספת position: absolute; */
+    bottom: 0; /* כפתור יופיע למטה */
+    width: 120px;
+    background-color: rgba(255, 136, 0, 0.747);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#bt:hover {
+    background-color: rgb(255, 108, 0); 
+}
 @media screen and (max-width: 400px) {
     section {
-        background-color: transparent; /* שינוי הצבע של הרקע במקום להסתיר אותו */
-    }
+        background-color: transparent; 
+}
 }
