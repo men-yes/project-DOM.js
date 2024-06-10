@@ -10,12 +10,12 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     currentUser = JSON.parse(current);
     const name = currentUser.name;
-    const score = currentUser.score || 0; // ניקוד התחלתי 0 אם לא קיים
-    let highestScore = localStorage.getItem("highestScore") || 0;
-    message.innerText = `Welcome ${name}. Your score: ${score}. Highest score: ${highestScore}`;
+    const scorePenalty = currentUser.scorePenalty || 0; // ניקוד התחלתי 0 אם לא קיים
+    let highestScorePenalty = localStorage.getItem("highestScorePenalty") || 0;
+    message.innerText =`Welcome ${name}. Your penalty shootout score: ${scorePenalty}. Highest score: ${highestScorePenalty}`;
   }
 });
-let highestScore = localStorage.getItem("highestScore") || 0;
+let highestScorePenalty = localStorage.getItem("highestScorePenalty") || 0;
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
 const homeButton = document.getElementById("bt");
@@ -88,13 +88,14 @@ function endGame() {
         const local = localStorage.getItem("currentUser");
         if (local) {
           const user = JSON.parse(local);
-          user.score = (user.score || 0) + 1; // עדכון ניקוד
+          user.scorePenalty = (user.scorePenalty || 0) + 1; // עדכון ניקוד
           localStorage.setItem("currentUser", JSON.stringify(user)); // שמירה ב-localStorage
-          let highestScore = localStorage.getItem("highestScore") || 0;
-          if (user.score > highestScore) {
-            localStorage.setItem("highestScore", user.score);
+          let highestScorePenalty = localStorage.getItem("highestScorePenalty") || 0;
+          if (user.scorePenalty > highestScorePenalty) {
+            localStorage.setItem("highestScorePenalty", user.scorePenalty);
             message.innerText += ` (New high score!)`;
           }
+          message.innerText = `Welcome ${user.name}. Your penalty shootout score: ${user.scorePenalty}. Highest score: ${highestScorePenalty}`;
         }
         resetGame();
       }, 2000);
