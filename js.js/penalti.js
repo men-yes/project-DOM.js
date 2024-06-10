@@ -10,34 +10,28 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     currentUser = JSON.parse(current);
     const name = currentUser.name;
-    message.innerText = "Welcome " + name;
-    // loadScore();
+    const score = currentUser.score || 0; // ניקוד התחלתי 0 אם לא קיים
+    let highestScore = localStorage.getItem("highestScore") || 0;
+    message.innerText = `Welcome ${name}. Your score: ${score}. Highest score: ${highestScore}`;
   }
 });
-
-// if (current) {
-//     const user = JSON.parse(local); // הפוך את המחרוזת לאובייקט
-//     const name = user.name;
-//     message.innerText = "wellcom " + name;
-// }else {
-//     message.innerText = "No user found";
-// }
+let highestScore = localStorage.getItem("highestScore") || 0;
+let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
 const homeButton = document.getElementById("bt");
 homeButton.addEventListener("click", function () {
   window.location.href = "/html.html/games.html";
 });
 
- 
 let shootCount = 0;
 const maxShoots = 5;
 let score = 0;
 
 function shoot(direction) {
-    // הסתרת כל הכדורים לפני הצגת הכדור הנכון
- document.querySelectorAll('.goal-ball').forEach(ball => {
-    ball.style.display = 'none';
-});
+  // הסתרת כל הכדורים לפני הצגת הכדור הנכון
+  document.querySelectorAll(".goal-ball").forEach((ball) => {
+    ball.style.display = "none";
+  });
   shootCount++;
   const goalkeeper = document.getElementById("goalkeeper");
   const boxWaith = document.getElementById("boxWaith");
@@ -46,8 +40,10 @@ function shoot(direction) {
   // Reset goalkeeper position
   goalkeeper.style.left = "125px";
 
-  const ballElement = document.getElementById('ball' + (direction === 'left' ? 1 : (direction === 'center' ? 2 : 3)));
-  ballElement.style.display = 'block';
+  const ballElement = document.getElementById(
+    "ball" + (direction === "left" ? 1 : direction === "center" ? 2 : 3)
+  );
+  ballElement.style.display = "block";
 
   if (Math.random() < 0.33) {
     if (direction === "left") {
@@ -89,7 +85,17 @@ function endGame() {
         origin: { y: 0.6 },
       });
       setTimeout(() => {
-        // saveScore();
+        const local = localStorage.getItem("currentUser");
+        if (local) {
+          const user = JSON.parse(local);
+          user.score = (user.score || 0) + 1; // עדכון ניקוד
+          localStorage.setItem("currentUser", JSON.stringify(user)); // שמירה ב-localStorage
+          let highestScore = localStorage.getItem("highestScore") || 0;
+          if (user.score > highestScore) {
+            localStorage.setItem("highestScore", user.score);
+            message.innerText += ` (New high score!)`;
+          }
+        }
         resetGame();
       }, 2000);
     }, 500);
@@ -100,22 +106,6 @@ function endGame() {
     }, 2000);
   }
 }
-// function loadScore() {
-//     if (currentUser ) {
-//         localStorage.setItem("score" , currentUser.score)
-//     } else {
-//         score = 0;
-//     }
-// }
-//  function saveScore() {
-//     currentUser.score = score;
-//     localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
-//     let highScore = localStorage.getItem('highScore');
-//     if (!highScore || score > highScore) {
-//         localStorage.setItem('highScore', score);
-//     }
-// }
 function resetGame() {
   shootCount = 0;
   score = 0;
@@ -126,11 +116,10 @@ function resetGame() {
   message.textContent = "";
   boxWaith.textContent = score;
   // הסתרת כל הכדורים לפני הצגת הכדור הנכון
- document.querySelectorAll('.goal-ball').forEach(ball => {
-    ball.style.display = 'none';
-});
+  document.querySelectorAll(".goal-ball").forEach((ball) => {
+    ball.style.display = "none";
+  });
 }
-
 const instructionsBtn = document.getElementById("instructionsBtn");
 const instructionsModal = document.getElementById("instructionsModal");
 // קביעת כפתור הסגירה
