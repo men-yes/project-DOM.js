@@ -91,13 +91,13 @@ function endGame() {
       setTimeout(() => {
         // saveScore();
         resetGame();
-      }, 3000);
+      }, 2000);
     }, 500);
   } else {
     message.textContent = "You lose!";
     setTimeout(() => {
       resetGame();
-    }, 2300);
+    }, 2000);
   }
 }
 // function loadScore() {

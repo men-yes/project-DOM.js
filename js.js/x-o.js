@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
     let none = document.getElementById("none");
     let current = localStorage.getItem("currentUser");
@@ -7,8 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
         none.style.display = "block";
       setTimeout(function() {
         window.location.href = "/index.html";
-      },2500);  
-    }   
+      },2500);
+    }
 });
 const instructionsBtn = document.getElementById("instructionsBtn");
 const instructionsModal = document.getElementById("instructionsModal");
@@ -28,27 +27,24 @@ window.onclick = function(event) {
         instructionsModal.style.display = "none";
     }
 }
-
 const israel = document.getElementById("israel");
 const local = localStorage.getItem("currentUser");
+const highestScore = localStorage.getItem("highestScore") || 0;
 if (local) {
     const user = JSON.parse(local); // הפוך את המחרוזת לאובייקט
     const name = user.name;
-    israel.innerText = "wellcom " + name;
+    const score = user.score || 0; // ניקוד התחלתי 0 אם לא קיים
+    israel.innerText = `Welcome ${name}. Your score: ${score}. Highest score: ${highestScore}`;
   } else {
     israel.innerText = "No user found";
   }
-
-
 const homeButton = document.getElementById('bt');
 homeButton.addEventListener('click', function() {
-  window.location.href = '/html.html/games.html'; 
+  window.location.href = '/html.html/games.html';
 });
-
 let  turn = true // true = x
 let counter = 0;
 let btns = document.querySelectorAll(".bbtt");
-
 btns.forEach(b => {
     b.addEventListener("click" , btnClick)
 })
@@ -65,7 +61,6 @@ function btnClick(){
     counter ++;
     if(turn) this.textContent = "X";
     else this.textContent = "O";
-
     if (chekIfWin()){
        win.style.display = "block"
         confetti({
@@ -73,16 +68,29 @@ function btnClick(){
             spread: 100,
             origin: { y: 0.6 }
         });
+        const local = localStorage.getItem("currentUser");
+        if (local) {
+            const user = JSON.parse(local);
+            user.score = (user.score || 0) + 1; // עדכון ניקוד
+            localStorage.setItem("currentUser", JSON.stringify(user)); // שמירה ב-localStorage
+            israel.innerText = `Welcome ${user.name}. Your score: ${user.score}. Highest score: ${highestScore}`;
+             // בדיקה אם הניקוד הנוכחי הוא הגבוה ביותר
+             if (user.score > highestScore) {
+                localStorage.setItem("highestScore", user.score);
+                israel.innerText += ` (New high score!)`;
+                
+            }
+        }
         setTimeout(() => {
-            // alert(this.textContent + " you win ")
-        },300)
+           resetGame();
+        },2700)
     }
     else{
        if(counter === 9){
         setTimeout(() => {
             // alert(  "אין מנצחים , לא נורא תנסו שוב ")
         },100)
-       } 
+       }
     }
     turn = !turn;
 }
